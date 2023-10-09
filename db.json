@@ -65863,6 +65863,14 @@
       "salary": "55555",
       "createdAt": 1672919913274,
       "image": "/images/avatar/avatar1.jpeg"
+    },
+    {
+      "name": "Neel Mani",
+      "image": "https://scontent.fdel11-4.fna.fbcdn.net/v/t39.30808-6/372685358_2587173811431240_4828124544588638410_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=49d041&_nc_ohc=rkx709oLpawAX_a0ETd&_nc_ht=scontent.fdel11-4.fna&oh=00_AfBjbehvbj9PjcPwuTXb9kS0VE2CjwUz8voyOUcQ7_b66A&oe=65288020",
+      "department": "111",
+      "salary": "1575798",
+      "createdAt": 1696872784756,
+      "id": "Nls3YL3PFB"
     }
   ],
   "departments": [
