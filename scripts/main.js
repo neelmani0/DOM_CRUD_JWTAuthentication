@@ -28,10 +28,10 @@ let getTodoButton = document.getElementById("fetch-todos");
 let mainSection = document.getElementById("data-list-wrapper");
 let notificationWrapper = document.getElementById("notifications-wrapper");
 
-// let userAuthToken = localStorage.getItem("localAccessToken") || null;
-// let userId = +localStorage.getItem("userId") || null;
-// const urlAllTodosOfUser = `${baseServerURL}/todos?userId=${userId}`;
-// const urlTodosBase = `${baseServerURL}/todos/`;
+let userAuthToken = localStorage.getItem("localAccessToken") || null;
+let userId = +localStorage.getItem("userId") || null;
+const urlAllTodosOfUser = `${baseServerURL}/todos?userId=${userId}`;
+const urlTodosBase = `${baseServerURL}/todos/`;
 
 // cats
 let empNameInput = document.getElementById("employee-name");
@@ -56,22 +56,61 @@ let updateScoreEmpSalary = document.getElementById("update-score-employee-salary
 let updateScoreEmpSalaryButton = document.getElementById("update-score-employee");
 
 let employeesData = [];
+ 
 
 
+
+//console.log(employeesData)
 // ***** Event listeners ***** //
 window.addEventListener("load", () => {
   fetchAndRenderEmployees();
 });
 
-sortAtoZBtn.addEventListener("click", () => {
+sortAtoZBtn.addEventListener("click", (e) => {
+        e.preventDefault()
+        console.log("high to low")
 
-});
+        fetch("http://127.0.0.1:9090/employees",{
+          "method" : "GET",
+          headers : {
+            "contant-type":"application/json"
+          },
+        })
+         .then((res)=> res.json())
+         .then((data)=> employeesData=data)
+         .catch((err)=> console.log(err))
+        console.log(employeesData)
+       let epdata = employeesData.sort((a, b) =>{(b.salary-a.salary)}
+       
+
+  // // Convert salary values to numbers for proper comparison
+  // const salaryA = parseInt(a.salary);
+  // const salaryB = parseInt(b.salary);
+
+  // // Compare salaries in descending order
+  // if (salaryA > salaryB) {
+  //   return -1; // Return a negative value to indicate "a" should come before "b"
+  // } else if (salaryA < salaryB) {
+  //   return 1; // Return a positive value to indicate "b" should come before "a"
+  // } else {
+  //   return 0; // Salaries are equal, no change in order
+  // }
+);
+
+console.log(epdata);
+  })
 
 sortZtoABtn.addEventListener("click", () => {
 
 });
 
+loginUserButton.addEventListener("click", async function () {
+  // fetchAndRenderEmployees();
+});
 
+registerUserButton.addEventListener("click", function () {
+
+});
 
 
 empCreateBtn.addEventListener("click", (e) => {
@@ -83,7 +122,7 @@ let img = empImgInput.value;
 let sal = empSalaryInput.value;
  
 addEmp(name,dep,img,sal);
-fetchAndRenderEmployees();
+
 alert("Employee added")
 // async function createData() {
 //   try {
@@ -160,14 +199,9 @@ updateEmpUpdateBtn.addEventListener("click", function (e) {
    })
 }
 
-loginUserButton.addEventListener("click", async function () {
-  // fetchAndRenderEmployees();
-});
 
-registerUserButton.addEventListener("click", function () {
-
-});
 //"/images/avatar/avatar1.jpeg"
+
 function fetchAndRenderEmployees() {
   fetch("http://127.0.0.1:9090/employees")
     .then((res) => {
@@ -176,11 +210,10 @@ function fetchAndRenderEmployees() {
     .then((data) => {
       //console.log(data)
       employeesData = data;
-      //console.log(employeesData)
+       //console.log(employeesData)
       renderCardList(employeesData);
     })
 }
-
 
 function renderCardList(data) {
   let cardList = `
@@ -192,6 +225,8 @@ function renderCardList(data) {
   //console.log(cardList)
   mainSection.innerHTML = cardList;
 }
+
+
 
 function cardData(id, name, img, salary, dep) {
   let card = `
