@@ -66,8 +66,18 @@ window.addEventListener("load", () => {
   fetchAndRenderEmployees();
 });
 
+
+loginUserButton.addEventListener("click", async function () {
+  // fetchAndRenderEmployees();
+});
+
+registerUserButton.addEventListener("click", function () {
+
+});
+
+
 sortAtoZBtn.addEventListener("click", (e) => {
-        e.preventDefault()
+       // e.preventDefault()
         console.log("high to low")
 
         fetch("http://127.0.0.1:9090/employees",{
@@ -79,9 +89,13 @@ sortAtoZBtn.addEventListener("click", (e) => {
          .then((res)=> res.json())
          .then((data)=> employeesData=data)
          .catch((err)=> console.log(err))
-        console.log(employeesData)
-       let epdata = employeesData.sort((a, b) =>{(b.salary-a.salary)}
-       
+
+       let epdata = employeesData.sort((a, b) =>{
+        const salaryA = parseInt(a.salary);
+        const salaryB = parseInt(b.salary);
+        return (salaryB-salaryA)});
+       console.log(epdata);
+       renderCardList(epdata);
 
   // // Convert salary values to numbers for proper comparison
   // const salaryA = parseInt(a.salary);
@@ -95,22 +109,14 @@ sortAtoZBtn.addEventListener("click", (e) => {
   // } else {
   //   return 0; // Salaries are equal, no change in order
   // }
-);
-
-console.log(epdata);
-  })
+   
+  });
 
 sortZtoABtn.addEventListener("click", () => {
 
 });
 
-loginUserButton.addEventListener("click", async function () {
-  // fetchAndRenderEmployees();
-});
 
-registerUserButton.addEventListener("click", function () {
-
-});
 
 
 empCreateBtn.addEventListener("click", (e) => {
@@ -150,7 +156,6 @@ alert("Employee added")
 // }
 // createData();
 
-
 });
 
 
@@ -182,6 +187,8 @@ updateEmpUpdateBtn.addEventListener("click", function (e) {
   fetchAndRenderEmployees();
  
 });
+
+// utlity functions
 
  function updateAllEmpF(name,dep, img, sal, id){
    fetch(`http://127.0.0.1:9090/employees${id}`,{
@@ -224,6 +231,7 @@ function renderCardList(data) {
   </div>`
   //console.log(cardList)
   mainSection.innerHTML = cardList;
+  
 }
 
 
