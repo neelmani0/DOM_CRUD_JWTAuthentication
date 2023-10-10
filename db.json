@@ -65799,70 +65799,66 @@
   "employees": [
     {
       "id": 1,
-      "name": "Abram Langtry",
-      "image": "/images/avatar/avatar1.jpeg",
-      "department": 1,
-      "salary": "500"
+      "name": "Ram",
+      "image": "server-files/images/avatar/avatar2.jpeg",
+      "department": "4",
+      "salary": "1235657"
     },
     {
       "id": 2,
       "name": "Flossy Arrell",
-      "image": "/images/avatar/avatar1.jpeg",
-      "department": 2,
-      "salary": 20000
+      "image": "server-files/images/avatar/avatar1.jpeg",
+      "department": "2",
+      "salary": "20000"
     },
     {
       "id": 3,
       "name": "Giorgio Antonioni",
-      "image": "/images/avatar/avatar1.jpeg",
-      "department": 3,
-      "salary": 95000
+      "image": "server-files/images/avatar/avatar1.jpeg",
+      "department": "3",
+      "salary": "95000"
     },
     {
+      "id": "tEYFrHNsdO",
       "name": "Himanshu",
-      "image": "/images/avatar/avatar2.jpeg",
-      "department": 4,
-      "salary": 100000,
-      "createdAt": 1670325954162,
-      "id": "tEYFrHNsdO"
+      "image": "server-files/images/avatar/avatar2.jpeg",
+      "department": "4",
+      "salary": "869008"
     },
     {
+      "id": "yjkyh1htCb",
       "name": "Prashant",
-      "image": "/images/avatar/avatar2.jpeg",
-      "department": 3,
-      "salary": 5000000,
-      "createdAt": 1670325954162,
-      "id": "yjkyh1htCb"
+      "image": "server-files/images/avatar/avatar1.jpeg",
+      "department": "6",
+      "salary": "80000000"
     },
     {
-      "name": "Rushikesh",
-      "image": "/images/avatar/avatar1.jpeg",
-      "department": 3,
-      "salary": 3000000,
-      "createdAt": 1672901861637,
-      "id": "fh2BHnLqlU"
-    },
-    {
-      "id": "4FjVtmfUYz",
+      "id": "fh2BHnLqlU",
       "name": "Anand Kumar",
-      "image": "/images/avatar/avatar2.jpeg",
+      "image": "server-files/images/avatar/avatar2.jpeg",
+      "department": "7",
       "salary": "1000000"
     },
     {
+      "id": "4FjVtmfUYz",
+      "name": "Amar",
+      "image": "server-files/images/avatar/avatar1.jpeg",
+      "department": "10",
+      "salary": "9000000"
+    },
+    {
+      "id": "y1i4lO11Wk",
       "name": "Ajay Singh",
-      "image": "/images/avatar/avatar1.jpeg",
-      "department": "2",
-      "salary": "80",
-      "createdAt": 1672913508984,
-      "id": "y1i4lO11Wk"
+      "image": "server-files/images/avatar/avatar1.jpeg",
+      "department": "9",
+      "salary": "7000000"
     },
     {
       "id": "g5qs2OrO86",
       "name": "Kumar Vishwas",
-      "department": "4",
-      "salary": "55555",
-      "createdAt": 1672919913274,
-      "image": "/images/avatar/avatar1.jpeg"
+      "image": "server-files/images/avatar/avatar2.jpeg",
+      "department": "8",
+      "salary": "8554"
     },
     {
       "name": "Neel Mani",

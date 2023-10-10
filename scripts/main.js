@@ -114,63 +114,51 @@ alert("Employee added")
 
 });
 
-function addEmp(name,dep,img,sal){
-  // const postEmp = {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json', // Set the content type to JSON
-//     // You can add additional headers if needed
-//   },
-//   body: JSON.stringify(obj) // Convert data to JSON(object notation) format
-// };
 
-// fetch("http://127.0.0.1:9090/employees", postEmp)
-//   .then((response) => {
-//     if (!response.ok) {
-//       throw new Error(`HTTP error! Status: ${response.status}`);
-//     }
-//     return response.json(); // Parse the response body as JSON
-//   })
-//   .then((responseData) => {
-//     // Handle the response data here
-//     console.log(responseData);
-//     mainSection.innerHTML="";
-//     renderCardList(responseData);
-//   })
-//   .catch((error) => {
-//     console.error('Error:', error);
-//   });
 
-fetch("http://127.0.0.1:9090/employees", {
+updateScoreEmpSalaryButton.addEventListener("click", function (e) {
+  e.preventDefault()
+  
+  let id=updateScoreEmpId.value;
+  let sal=updateScoreEmpSalary.value;
+  updateSalary(id,sal);
+ console.log(id, sal);
+fetchAndRenderEmployees();
 
-method: 'POST',
-  headers: {
-    'Content-Type': 'application/json', 
-  },
-  body: JSON.stringify({
-    "name": name,
-    "image": img,
-    "department": dep,
-    "salary": sal
-  })
+});
 
-})
+ 
 
+
+updateEmpUpdateBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+
+  let name =  updateEmpNameInput.value;
+  let dep = updateEmpDeptInput.value;
+  let img = updateEmpImageInput.value;
+  let sal = updateEmpSalaryInput.value;
+  let id = updateEmpIdInput.value;
+  console.log(name,dep, img, sal, id);
+  updateAllEmpF(name,dep, img, sal, id)
+  fetchAndRenderEmployees();
+ 
+});
+
+ function updateAllEmpF(name,dep, img, sal, id){
+   fetch(`http://127.0.0.1:9090/employees${id}`,{
+    "method" : "PUT",
+    "body" : JSON.stringify({
+      "id": id,
+      "name": name,
+      "image": img,
+      "department": dep,
+      "salary": sal
+    }),
+    headers: {
+      'Content-Type': 'application/json', 
+    }
+   })
 }
-
-
-updateScoreEmpSalaryButton.addEventListener("click", function () {
-
-});
-
-
-
-
-updateEmpUpdateBtn.addEventListener("click", function () {
-
-
-  // createData().then(dat => console.log(dat));
-});
 
 loginUserButton.addEventListener("click", async function () {
   // fetchAndRenderEmployees();
@@ -222,13 +210,77 @@ function cardData(id, name, img, salary, dep) {
   return card;
 }
 
-let edit = document.getElementsByClassName("card_item card_link");
-edit.addEventListener("click", function(e){
-  e.preventDefault;
-  console.log("woooooo")
-  
-});
+let editButtons = document.querySelectorAll(".card_item.card_link");
+console.log(editButtons.length);
+for (let i = 0; i < editButtons.length; i++) {
+  editButtons[i].addEventListener("click", function(e) {
+    e.preventDefault(); 
+    console.log("Button clicked");
+    
+  });
+}
 
+function addEmp(name,dep,img,sal){
+  // const postEmp = {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json', // Set the content type to JSON
+//     // You can add additional headers if needed
+//   },
+//   body: JSON.stringify(obj) // Convert data to JSON(object notation) format
+// };
+
+// fetch("http://127.0.0.1:9090/employees", postEmp)
+//   .then((response) => {
+//     if (!response.ok) {
+//       throw new Error(`HTTP error! Status: ${response.status}`);
+//     }
+//     return response.json(); // Parse the response body as JSON
+//   })
+//   .then((responseData) => {
+//     // Handle the response data here
+//     console.log(responseData);
+//     mainSection.innerHTML="";
+//     renderCardList(responseData);
+//   })
+//   .catch((error) => {
+//     console.error('Error:', error);
+//   });
+
+fetch("http://127.0.0.1:9090/employees", {
+
+method: 'POST',
+  headers: {
+    'Content-Type': 'application/json', 
+  },
+  body: JSON.stringify({
+    "name": name,
+    "image": img,
+    "department": dep,
+    "salary": sal
+  })
+
+})
+
+}
+
+
+function updateSalary(id,sal){
+ 
+  fetch(`http://127.0.0.1:9090/employees/${id}`,{
+     
+       "method" : "PATCH",
+       headers: {
+        'Content-Type': 'application/json', 
+      },
+       "body" : JSON.stringify({
+        "id" : id,
+        "salary": sal
+
+       }) 
+  })
+  alert("salaryUpdated");
+}
 //console.log(employeesData);
 // ***** Utilities ***** //
 // array of objects

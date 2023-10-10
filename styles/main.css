@@ -1,11 +1,7 @@
-.card_img {
- width: 40%;
- height: 10%;
-}
 
 
 .card_img img {
-    height: 68%;
-    width: fit-content;
+    /* height: 68%;
+    width: fit-content; */
    }
    
