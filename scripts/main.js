@@ -55,6 +55,10 @@ let updateScoreEmpId = document.getElementById("update-score-employee-id");
 let updateScoreEmpSalary = document.getElementById("update-score-employee-salary");
 let updateScoreEmpSalaryButton = document.getElementById("update-score-employee");
 
+let salary1L = document.getElementById("filter-less-than-1L");
+let salary1G = document.getElementById("filter-more-than-equal-1L");
+
+
 let employeesData = [];
  
 
@@ -75,10 +79,68 @@ registerUserButton.addEventListener("click", function () {
 
 });
 
+salary1G.addEventListener("click", (e)=>{
+  getData().then((res)=> employeesData = res)
+  .catch((err)=>console.log(err));
+
+  let fltrData = employeesData.filter((i)=>{
+    let sal = +i.salary;
+    if(sal>=100000){
+      return true
+    }
+    return false
+  })
+  console.log(fltrData)
+  renderCardList(fltrData);
+})
+
+salary1L.addEventListener("click", (e)=>{
+  console.log("clicked sallay less then 1 lackh")
+     
+getData().then((res)=>res)
+     .then((data)=>employeesData=data)
+     .catch((err)=> console.log(err));
+     console.log(employeesData);
+
+     let fltrData = employeesData.filter((i)=>{
+      let sal = +i.salary;
+      if(sal<100000){
+        return true;
+      }
+     return false;
+     })
+     renderCardList(fltrData)
+     console.log(fltrData)
+})
+
+async function getData(){
+  try {
+  let res = await fetch("http://127.0.0.1:9090/employees",{
+    "method" : "GET",
+    headers :{
+      "contan-type" : "application/json"
+    }
+   })
+   if(res.ok){
+    let data = res.json();
+    return data;
+   }else{
+    return `server responded with a ${res.status} error.`
+   }
+  }catch(err){
+    return err;
+  }
+
+}
+
+salary1G.addEventListener("click", (e)=>{
+  console.log("clicked sallay more or equal then or eqal to 1 lackh")
+})
+
 
 sortAtoZBtn.addEventListener("click", (e) => {
        // e.preventDefault()
-        console.log("high to low")
+       // console.log("high to low")
 
         fetch("http://127.0.0.1:9090/employees",{
           "method" : "GET",
@@ -94,7 +156,7 @@ sortAtoZBtn.addEventListener("click", (e) => {
         const salaryA = parseInt(a.salary);
         const salaryB = parseInt(b.salary);
         return (salaryB-salaryA)});
-       console.log(epdata);
+       //console.log(epdata);
        renderCardList(epdata);
 
   // // Convert salary values to numbers for proper comparison
@@ -112,8 +174,26 @@ sortAtoZBtn.addEventListener("click", (e) => {
    
   });
 
-sortZtoABtn.addEventListener("click", () => {
-
+sortZtoABtn.addEventListener("click", (e) => {
+  
+  fetch("http://127.0.0.1:9090/employees",{
+    "method" : "GET",
+    headers : {
+      "content-type": "application/json"
+    },
+  })
+  .then((res)=> res.json())
+  .then((data)=>employeesData = data)
+  .catch((err)=>alert(err))
+  console.log(employeesData)
+  let fData = employeesData.sort((a,b)=>{
+    let aSalary = +a.salary;
+    let bSalary = +b.salary;
+    return (aSalary-bSalary);
+  })
+  console.log(fData)
+    renderCardList(fData);
+    console.log("low to high")
 });
 
 
@@ -157,7 +237,7 @@ alert("Employee added")
 // createData();
 
 });
-
+ 
 
 
 updateScoreEmpSalaryButton.addEventListener("click", function (e) {
